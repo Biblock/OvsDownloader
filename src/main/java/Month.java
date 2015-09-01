@@ -1,4 +1,3 @@
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -60,7 +59,7 @@ public class Month {
     }
 
     public String generateLink() {
-        return String.format("http://www.podcast-onvasgener.fr/%d-%d-%s.html", year, month, Month.monthInLetter(String.valueOf(month)));
+        return String.format("http://www.podcast-onvasgener.fr/%d-%02d-%s.html", year, month, Month.monthInLetter(String.valueOf(month)));
     }
 
     /*** Static methods ***/
