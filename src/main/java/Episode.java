@@ -11,16 +11,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Episode {
-    String urlStreaming;
-    String downloadUrl = "";
-
-    public Episode(String urlStreaming) {
-        this.urlStreaming = urlStreaming;
+    private String urlStreaming;
+    private String downloadUrl = "";
+    private Month month;
+    public Episode(String urlStreaming, Month month) {
+        this.urlStreaming = urlStreaming; this.month = month;
     }
 
     public void download() throws MalformedURLException {
         URL url = new URL(downloadUrl);
-        File target = new File("Episodes/");
+        File target = new File("Episodes/" + month.toString() + "/");
         if (!target.exists()) {
             target.mkdir();
         }

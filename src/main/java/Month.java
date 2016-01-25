@@ -29,7 +29,7 @@ public class Month {
             for (Element link : links) {
                 String url = link.attr("href");
                 if (url.contains("MediaCenter")) {
-                    episodeList.add(new Episode(url));
+                    episodeList.add(new Episode(url, this));
                 }
             }
 
@@ -37,8 +37,8 @@ public class Month {
             int nbEp = episodeList.size();
             System.out.println(String.format("Exactly %d episode have been found", nbEp));
             for (Episode ep : episodeList) {
-                ep.collectDownloadLink();
                 System.out.println(String.format("Extracting episode [%d/%d]", cursor, nbEp));
+                ep.collectDownloadLink();
                 ++cursor;
             }
         }
@@ -58,8 +58,17 @@ public class Month {
         }
     }
 
+    @Override
+    public String toString() {
+        return  getMonth() + "-" + year;
+    }
+
+    public String getMonth() {
+        return monthInLetter(String.valueOf(month));
+    }
+
     public String generateLink() {
-        return String.format("http://www.podcast-onvasgener.fr/%d-%02d-%s.html", year, month, Month.monthInLetter(String.valueOf(month)));
+        return String.format("http://www.podcast-onvasgener.fr/%d-%02d-%s.html", year, month, this.getMonth());
     }
 
     /*** Static methods ***/
@@ -118,6 +127,4 @@ public class Month {
         }
         return m;
     }
-
-
 }
